@@ -14,15 +14,16 @@ export default class CompetitorDisplay extends Component<CompetitorDisplayProps,
         const {competitor, competition} = this.props;
         return (
             <div className="competitor-box">
-                <h3>{competitor.name} - <span className="placement-number">{this.props.leaderBoardIndex + 1}</span></h3>
+                <h3>{competitor.name}</h3>
                 <br/>
-                <div>Total Punkte: <span style={{
+                <div style={{
                     fontWeight: 'bold',
                     padding: '5px',
-                    minWidth: '2rem',
-                    borderRadius: '15px',
-                    backgroundColor: '#1e3d54'
-                }}>{competition.getTotalScoreByCompetitorName(competitor.name)}</span></div>
+                    border: '1px solid #bababa',
+                    margin: '0 auto',
+                    width: '8rem',
+                    borderRadius: '8px'
+                }}>Total Punkte: {competition.getTotalScoreByCompetitorName(competitor.name)}</div>
                 <br/>
                 <div className="exercise-list-container">
                     {

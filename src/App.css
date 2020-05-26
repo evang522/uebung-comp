@@ -3,9 +3,9 @@
 }
 
 body {
-  background: #252627;
+  background: #f3f3f3;
   font-family: 'Roboto', sans-serif;
-  color: white;
+  color: black;
 }
 
 .top-bar {
@@ -13,10 +13,10 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  background-color: #1e3d54;
+  background-color: #151e28;
   color: white;
   height: 4rem;
-  border-bottom: 2px solid #bb0a21;
+  border-bottom: 4px solid #ff5722;
 }
 
 .leaderboard-container {
@@ -30,12 +30,13 @@ body {
 
 .competitor-box {
   width: 25rem;
-  height: 23rem;
+  height: 25rem;
   margin: 1rem;
   padding: 1rem;
   border-radius: 5px;
-  background: #bb0a21;
-  color: white;
+  border: 1px solid #bababa;
+  box-shadow: 5px 6px 6px #c4c4c4;
+  background: #fff;
 }
 
 
@@ -44,3 +45,6 @@ body {
   padding: 5px 10px;
   border-radius: 15px;
 }
+
+/*background: #ff5722;*/
+/*#151e28*/
