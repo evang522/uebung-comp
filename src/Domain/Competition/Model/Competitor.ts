@@ -3,7 +3,7 @@ import ExerciseStats from "./ExerciseStats";
 export default class Competitor {
     public constructor(
         public name: string,
-        public exerciseStats: ExerciseStats[]
+        public exerciseStats: ExerciseStats[],
     ) {}
 
     public getExerciseStatsByName(exerciseName: string): ExerciseStats | null

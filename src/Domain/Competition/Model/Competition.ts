@@ -5,7 +5,9 @@ export default class Competition {
     public EXERCISE_POINT_WORTH = 10;
 
     public constructor(
-        private competitors: Competitor[]
+        private competitors: Competitor[],
+        public startTime: Date = new Date('2020.6.3'),
+        public endTime: Date = new Date('2020.6.10'),
     ) {}
 
     public getCompetitors(): Competitor[] {

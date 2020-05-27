@@ -11,9 +11,16 @@ export interface CompetitorDisplayProps {
 export default class CompetitorDisplay extends Component<CompetitorDisplayProps, any> {
     public render() {
 
-        const {competitor, competition} = this.props;
+        const {competitor, competition, leaderBoardIndex} = this.props;
+        const totalPoints = competition.getTotalScoreByCompetitorName(competitor.name);
+
         return (
-            <div className="competitor-box">
+            <div
+                style={{
+                    border: leaderBoardIndex === 0 ? '4px solid orange' : '',
+                }}
+                className="competitor-box"
+            >
                 <h3>{competitor.name}</h3>
                 <br/>
                 <div style={{
@@ -23,21 +30,25 @@ export default class CompetitorDisplay extends Component<CompetitorDisplayProps,
                     margin: '0 auto',
                     width: '8rem',
                     borderRadius: '8px'
-                }}>Total Punkte: {competition.getTotalScoreByCompetitorName(competitor.name)}</div>
+                }}>Total Punkte: {totalPoints}</div>
                 <br/>
                 <div className="exercise-list-container">
                     {
-                        competition.getListOfExerciseNames().map((exerciseName: string) => {
+                        competition.getListOfExerciseNames().map((exerciseName: string, index: number) => {
+                            const exerciseTotal = competition.getHighestScoreForNamedExercise(exerciseName)!;
+                            const competitorScore = competitor.getExerciseStatsByName(exerciseName)?.value!;
                             return (
-                                <div style={{
+                                <div
+                                    key={index}
+                                    style={{
                                     width: '18rem',
                                     padding: '8px',
                                     textAlign: 'left',
                                     margin: '4px auto',
                                     background:'transparent',
-                                    border: '1px dotted black',
+                                    border: competitorScore !== 0 && competitorScore >= exerciseTotal ? '2px solid maroon': '1px dotted black',
                                     borderRadius: '10px',
-                                }}>{exerciseName}: {competitor.getExerciseStatsByName(exerciseName)?.value}</div>
+                                }}>{exerciseName}: {competitorScore}</div>
                             )
                         })
                     }
