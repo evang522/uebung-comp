@@ -20,9 +20,16 @@ export default class SheetsClient {
         );
     }
 
-    public async getSpreadsheetCellData(spreadSheetId: string, range: string) {
+    public async getBatchSpreadsheetCellData(spreadSheetId: string, range: string) {
         return await this.fetchJSON(
             `${this.baseUri}/v4/spreadsheets/${spreadSheetId}/values:batchGet/?ranges=${range}&key=${this.authKey}`,
+            'GET'
+        );
+    }
+
+    public async getSingleSpreadsheetCellData(spreadSheetId: string, cell: string) {
+        return await this.fetchJSON(
+            `${this.baseUri}/v4/spreadsheets/${spreadSheetId}/values/${cell}/?key=${this.authKey}`,
             'GET'
         );
     }

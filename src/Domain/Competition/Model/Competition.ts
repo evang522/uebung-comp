@@ -10,8 +10,17 @@ export default class Competition {
         public endTime: Date = new Date('2020.6.10'),
     ) {}
 
+
     public getCompetitors(): Competitor[] {
         return this.competitors;
+    }
+
+    public setStartTime(date: Date): void {
+       this.startTime = date;
+    }
+
+    public setEndTime(date: Date): void {
+        this.endTime = date;
     }
 
     public getCompetitorsDescendingByPointsForAllExercises() {

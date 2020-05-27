@@ -17,7 +17,7 @@ export default class CompetitorDisplay extends Component<CompetitorDisplayProps,
         return (
             <div
                 style={{
-                    border: leaderBoardIndex === 0 ? '4px solid orange' : '',
+                    border: leaderBoardIndex === 0 ? '4px solid #ff5722' : '',
                 }}
                 className="competitor-box"
             >

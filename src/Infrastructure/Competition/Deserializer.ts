@@ -28,7 +28,7 @@ export default class Deserializer {
         return new Competition(competitors);
     }
 
-    public static getCompetitorData(competitionData: any): Array<{ name: string, index: number }> {
+    private static getCompetitorData(competitionData: any): Array<{ name: string, index: number }> {
         const competitionNameRow = competitionData[0];
         return [
             {name: competitionNameRow[2], index: 2},
