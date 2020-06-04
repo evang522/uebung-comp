@@ -48,13 +48,15 @@ export default class Competition {
                 throw new Error('Exercise: ' + exerciseName + ' was not found. Could not calculate total score for competitor')
             }
 
-            if (competitorExerciseStats.value === 0) {
+            if (competitorExerciseStats.value === 0 || totalScoreForExercise === 0) {
                 return 0;
             }
 
-            const totalScoreForThisExercise = competitorExerciseStats.value >= totalScoreForExercise ? this.EXERCISE_POINT_WORTH : 0;
+            // const totalScoreForThisExercise = competitorExerciseStats.value >= totalScoreForExercise ? this.EXERCISE_POINT_WORTH : 0;
+            const competitorTotalScoreForExercise = (competitorExerciseStats.value / totalScoreForExercise) * this.EXERCISE_POINT_WORTH;
 
-            return totalScoreForThisExercise;
+
+            return competitorTotalScoreForExercise;
         })
 
         return scoreList.reduce((previousValue, score) => (previousValue + score), 0)

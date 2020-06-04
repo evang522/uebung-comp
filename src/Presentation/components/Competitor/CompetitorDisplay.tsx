@@ -28,9 +28,9 @@ export default class CompetitorDisplay extends Component<CompetitorDisplayProps,
                     padding: '5px',
                     border: '1px solid #bababa',
                     margin: '0 auto',
-                    width: '8rem',
+                    width: '9rem',
                     borderRadius: '8px'
-                }}>Total Punkte: {totalPoints}</div>
+                }}>Total Punkte: {totalPoints?.toFixed(1)}</div>
                 <br/>
                 <div className="exercise-list-container">
                     {
@@ -48,7 +48,7 @@ export default class CompetitorDisplay extends Component<CompetitorDisplayProps,
                                     background:'transparent',
                                     border: competitorScore !== 0 && competitorScore >= exerciseTotal ? '2px solid maroon': '1px dotted black',
                                     borderRadius: '10px',
-                                }}>{exerciseName}: {competitorScore}</div>
+                                }}>{exerciseName}: {competitorScore.toFixed(0)}</div>
                             )
                         })
                     }
