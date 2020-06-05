@@ -16,12 +16,12 @@ export default class Deserializer {
             return new Competitor(
                 competitor.name,
                 [
-                    new ExerciseStats(pushupRow[0], Number(pushupRow[competitor.index])),
-                    new ExerciseStats(situpRow[0], Number(situpRow[competitor.index])),
-                    new ExerciseStats(bikingRow[0], Number(bikingRow[competitor.index])),
-                    new ExerciseStats(runningRow[0], Number(runningRow[competitor.index])),
-                    new ExerciseStats(kneebeugenRow[0], Number(kneebeugenRow[competitor.index])),
-                    new ExerciseStats(pullupVariantRow[0], Number(pullupVariantRow[competitor.index])),
+                    new ExerciseStats(pushupRow[0], Number(pushupRow[competitor.index] || 0)),
+                    new ExerciseStats(situpRow[0], Number(situpRow[competitor.index] || 0)),
+                    new ExerciseStats(bikingRow[0], Number(bikingRow[competitor.index] || 0)),
+                    new ExerciseStats(runningRow[0], Number(runningRow[competitor.index] || 0)),
+                    new ExerciseStats(kneebeugenRow[0], Number(kneebeugenRow[competitor.index] || 0)),
+                    new ExerciseStats(pullupVariantRow[0], Number(pullupVariantRow[competitor.index] || 0)),
                 ])
         })
 
@@ -30,14 +30,17 @@ export default class Deserializer {
 
     private static getCompetitorData(competitionData: any): Array<{ name: string, index: number }> {
         const competitionNameRow = competitionData[0];
-        return [
-            {name: competitionNameRow[2], index: 2},
-            {name: competitionNameRow[3], index: 3},
-            {name: competitionNameRow[4], index: 4},
-            {name: competitionNameRow[5], index: 5},
-            {name: competitionNameRow[6], index: 6},
-            {name: competitionNameRow[7], index: 7},
-            {name: competitionNameRow[8], index: 8},
-        ];
+
+        return (competitionNameRow as string[]).reduce(
+            (accumulator: Array<{ name: string, index: number }>, competitorName: string, currentIndex: number) => {
+                if (competitorName && currentIndex !== 0 && currentIndex !== 1) {
+                    accumulator.push({
+                        name: competitorName,
+                        index: currentIndex,
+                    })
+                }
+
+                return accumulator;
+            }, []);
     }
 }

@@ -32,7 +32,7 @@ function App() {
         competitionClient.getCompetition()
             .then((loadedCompetition: Competition) => {
                 setCompetition(loadedCompetition);
-                console.log(loadedCompetition)
+                console.log('Competition: ' + loadedCompetition)
             })
     }, [])
 

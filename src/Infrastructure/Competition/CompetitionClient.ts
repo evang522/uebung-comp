@@ -12,7 +12,7 @@ export default class CompetitionClient {
     }
 
     public async getRawCompetitionSpreadsheet() {
-        return await this.sheetsClient.getBatchSpreadsheetCellData(this.resultsSpreadsheetId, `${this.COMPETITION_DATA_TABLE}!A3:I10`)
+        return await this.sheetsClient.getBatchSpreadsheetCellData(this.resultsSpreadsheetId, `${this.COMPETITION_DATA_TABLE}!A3:Q10`)
     }
 
     public async getCompetition(): Promise<Competition> {
