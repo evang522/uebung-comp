@@ -6,6 +6,7 @@ export interface CompetitorDisplayProps {
     competitor: Competitor;
     competition: Competition;
     leaderBoardIndex: number;
+    setDisplayedExercise: (exercise: string | null) => void;
 }
 
 export default class CompetitorDisplay extends Component<CompetitorDisplayProps, any> {
@@ -39,16 +40,18 @@ export default class CompetitorDisplay extends Component<CompetitorDisplayProps,
                             const competitorScore = competitor.getExerciseStatsByName(exerciseName)?.value!;
                             return (
                                 <div
+                                    onClick={() => this.props.setDisplayedExercise(exerciseName)}
                                     key={index}
                                     style={{
-                                    width: '18rem',
-                                    padding: '8px',
-                                    textAlign: 'left',
-                                    margin: '4px auto',
-                                    background:'transparent',
-                                    border: competitorScore !== 0 && competitorScore >= exerciseTotal ? '2px solid maroon': '1px dotted black',
-                                    borderRadius: '10px',
-                                }}>{exerciseName}: {competitorScore.toFixed(0)}</div>
+                                        cursor: 'pointer',
+                                        width: '18rem',
+                                        padding: '8px',
+                                        textAlign: 'left',
+                                        margin: '4px auto',
+                                        background: 'transparent',
+                                        border: competitorScore !== 0 && competitorScore >= exerciseTotal ? '2px solid maroon' : '1px dotted black',
+                                        borderRadius: '10px',
+                                    }}>{exerciseName}: {competitorScore.toFixed(0)}</div>
                             )
                         })
                     }

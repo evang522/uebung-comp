@@ -13,4 +13,9 @@ export default class Competitor {
         }) || null;
     }
 
+    public setExerciseStats(stats: ExerciseStats[]): void
+    {
+        this.exerciseStats = stats;
+    }
+
 }

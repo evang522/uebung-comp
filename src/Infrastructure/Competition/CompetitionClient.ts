@@ -12,7 +12,7 @@ export default class CompetitionClient {
     }
 
     public async getRawCompetitionSpreadsheet() {
-        return await this.sheetsClient.getBatchSpreadsheetCellData(this.resultsSpreadsheetId, `${this.COMPETITION_DATA_TABLE}!A3:Q10`)
+        return await this.sheetsClient.getBatchSpreadsheetCellData(this.resultsSpreadsheetId, `${this.COMPETITION_DATA_TABLE}!A3:Q13`)
     }
 
     public async getCompetition(): Promise<Competition> {
@@ -32,12 +32,12 @@ export default class CompetitionClient {
     }
 
     public async getStartDate(): Promise<Date> {
-        const rawData = await this.sheetsClient.getSingleSpreadsheetCellData(this.resultsSpreadsheetId, `${this.COMPETITION_DATA_TABLE}!C13`)
+        const rawData = await this.sheetsClient.getSingleSpreadsheetCellData(this.resultsSpreadsheetId, `${this.COMPETITION_DATA_TABLE}!B19`)
         return new Date(rawData.values[0]);
     }
 
     public async getEndDate(): Promise<Date> {
-        const rawData = await this.sheetsClient.getSingleSpreadsheetCellData(this.resultsSpreadsheetId, `${this.COMPETITION_DATA_TABLE}!C14`)
+        const rawData = await this.sheetsClient.getSingleSpreadsheetCellData(this.resultsSpreadsheetId, `${this.COMPETITION_DATA_TABLE}!B20`)
         return new Date(rawData.values[0]);
     }
 }

@@ -30,7 +30,7 @@ body {
 
 .competitor-box {
   width: 25rem;
-  height: 25rem;
+  min-height: 25rem;
   margin: 1rem;
   padding: 1rem;
   border-radius: 5px;
@@ -44,6 +44,19 @@ body {
   background-color: #1e3d54;
   padding: 5px 10px;
   border-radius: 15px;
+}
+
+.exercise-display-container {
+  left: 50%;
+  transform: translate(-50%, 0);
+  position:fixed;
+  width: 40rem;
+  height: 70%;
+  margin: 0 auto;
+  background: #FEFEFE;
+  box-shadow: 0px 3px 25px grey;
+  border-radius: 10px;
+  padding: 2rem;
 }
 
 /*background: #ff5722;*/

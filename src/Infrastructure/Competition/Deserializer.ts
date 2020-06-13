@@ -5,24 +5,26 @@ import ExerciseStats from "../../Domain/Competition/Model/ExerciseStats";
 export default class Deserializer {
     public static deserializeRawCompetitionData(competitionData: any): Competition {
         const competitorData = this.getCompetitorData(competitionData);
-        const pushupRow = competitionData[1];
-        const situpRow = competitionData[2];
-        const bikingRow = competitionData[3];
-        const runningRow = competitionData[4];
-        const kneebeugenRow = competitionData[5];
-        const pullupVariantRow = competitionData[6];
+        const exerciseRows = (competitionData as any[])
+            .reduce((accumulator: Array<string[]>, newValue: string[], index: number) => {
+                if (index !== 0 && (newValue.length)) {
+                    accumulator.push(newValue)
+                }
+
+                return accumulator;
+            }, [])
 
         const competitors = competitorData.map((competitor: { index: number, name: string }) => {
-            return new Competitor(
+            const competitorModel = new Competitor(
                 competitor.name,
-                [
-                    new ExerciseStats(pushupRow[0], Number(pushupRow[competitor.index] || 0)),
-                    new ExerciseStats(situpRow[0], Number(situpRow[competitor.index] || 0)),
-                    new ExerciseStats(bikingRow[0], Number(bikingRow[competitor.index] || 0)),
-                    new ExerciseStats(runningRow[0], Number(runningRow[competitor.index] || 0)),
-                    new ExerciseStats(kneebeugenRow[0], Number(kneebeugenRow[competitor.index] || 0)),
-                    new ExerciseStats(pullupVariantRow[0], Number(pullupVariantRow[competitor.index] || 0)),
-                ])
+                []
+            );
+
+            const exerciseStats = exerciseRows.map((row: string[]) => {
+                return new ExerciseStats(row[0], Number(row[competitor.index] || 0), competitorModel)
+            })
+            competitorModel.setExerciseStats(exerciseStats);
+            return competitorModel;
         })
 
         return new Competition(competitors);
