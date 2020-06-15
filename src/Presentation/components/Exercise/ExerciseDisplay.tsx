@@ -23,24 +23,37 @@ class ExerciseDisplay extends Component<ExerciseDisplayProps, any> {
                                     style={{
                                         width: '19rem',
                                         background: 'transparent',
-                                        padding: '9px',
-                                        textAlign: 'center',
                                         margin: '6px auto',
                                         border: '1px dotted black',
                                         borderRadius: '10px',
+                                        textAlign: 'center'
                                     }}
                                 >
 
-                                    {stat.competitor.name + ': ' + stat.value}
+                                        <span
+                                            style={{
+                                                position: 'absolute',
+                                                zIndex: 100,
+                                                fontWeight: 'bold',
+                                                marginTop: '1rem',
+                                                marginLeft: '-1.5rem'
+                                            }}
+                                        >
+                                            {stat.competitor.name + ': ' + stat.value}
+                                        </span>
                                     <div
                                         style={{
-                                            borderBottom: '2px solid #ff5722',
-                                            height: '1px',
+                                            background: '#f53700',
+                                            height: '3rem',
+                                            margin: 0,
                                             width: this.getPercentageForExerciseStat(stat.value) + '%',
-                                            opacity: '0.5'
+                                            opacity: '0.6',
+                                            color: 'black',
+                                            zIndex: 10,
+                                            borderRadius: '5px',
                                         }}
-
-                                    />
+                                    >
+                                    </div>
                                 </div>
                             );
                         })}
