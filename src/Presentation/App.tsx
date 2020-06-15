@@ -1,4 +1,4 @@
-import React, {useEffect, useState, MouseEvent} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../App.css';
 import CompetitionClient from "../Infrastructure/Competition/CompetitionClient";
 import Competition from "../Domain/Competition/Model/Competition";
@@ -12,6 +12,8 @@ export function calculateTimeMessage(competition: Competition): string {
     const endTime = competition.endTime.getTime();
 
     const now = Date.now();
+
+    console.log(now, startTime, endTime);
 
     if (now < startTime) {
         const interval = TimeInterval.forSpecifiedMilliseconds(startTime - now);
@@ -73,8 +75,13 @@ function App() {
                 <div className="leaderboard-container">
 
                     {competition ? competition.getCompetitorsDescendingByPointsForAllExercises().map((participant: Competitor, index: number) => {
-                        return <CompetitorDisplay setDisplayedExercise={setDisplayedExercise} key={index} leaderBoardIndex={index} competitor={participant}
-                                                  competition={competition}/>
+                        return <CompetitorDisplay
+                            setDisplayedExercise={setDisplayedExercise}
+                            key={index}
+                            leaderBoardIndex={index}
+                            competitor={participant}
+                            competition={competition}
+                        />
                     }) : null}
                 </div>
             </section>
