@@ -13,7 +13,7 @@ export function calculateTimeMessage(competition: Competition): string {
 
     const now = Date.now();
 
-    console.log(now, startTime, endTime);
+    console.log(now, startTime, endTime, 'test');
 
     if (now < startTime) {
         const interval = TimeInterval.forSpecifiedMilliseconds(startTime - now);
@@ -22,9 +22,11 @@ export function calculateTimeMessage(competition: Competition): string {
     } else if (now > startTime && now < endTime) {
         const interval = TimeInterval.forSpecifiedMilliseconds(endTime - now);
         return `Endet in ${interval.inHours() < 24 ? interval.inHours().toFixed(1).toLocaleString() + ' Stunde' : interval.inDays().toFixed(1).toLocaleString() + ' Tagen'}`;
-    } else {
+    } else if (now > endTime) {
         return `Wettbewerb schon beendet -- ${competition.getCompetitorsDescendingByPointsForAllExercises()[0].name} hat gewonnen!`;
     }
+
+    return '';
 }
 
 function App() {
