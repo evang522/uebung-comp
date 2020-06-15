@@ -13,8 +13,6 @@ export function calculateTimeMessage(competition: Competition): string {
 
     const now = Date.now();
 
-    console.log(now, startTime, endTime, 'test');
-
     if (now < startTime) {
         const interval = TimeInterval.forSpecifiedMilliseconds(startTime - now);
 
@@ -38,7 +36,7 @@ function App() {
         competitionClient.getCompetition()
             .then((loadedCompetition: Competition) => {
                 setCompetition(loadedCompetition);
-                console.log('Competition: ' + loadedCompetition)
+                console.log(loadedCompetition)
             })
             .catch(() => {
                 document.write('There was a problem! Please Reload or get in contact with the developer.')
