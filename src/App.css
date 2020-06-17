@@ -50,8 +50,7 @@ body {
   left: 50%;
   transform: translate(-50%, 0);
   position:fixed;
-  width: 40rem;
-  height: 70%;
+  height: 75%;
   margin: 0 auto;
   background: #FEFEFE;
   box-shadow: 0px 3px 25px grey;

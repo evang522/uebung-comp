@@ -3,6 +3,7 @@ import ExerciseStats from "../../../Domain/Competition/Model/ExerciseStats";
 
 interface ExerciseDisplayProps {
     stats: ExerciseStats[]
+    closePanel: () => void;
 }
 
 class ExerciseDisplay extends Component<ExerciseDisplayProps, any> {
@@ -10,7 +11,24 @@ class ExerciseDisplay extends Component<ExerciseDisplayProps, any> {
         return (
             <div
                 onClick={(e: MouseEvent<HTMLDivElement>) => e.stopPropagation()}
+                style={{
+                    overflowY: 'scroll'
+                }}
                 className="exercise-display-container">
+                <div
+                    onClick={() => this.props.closePanel()}
+                    style={{
+                        margin: '0 auto',
+                        background: '#FFFFFF',
+                        boxShadow: '2px 1px 6px grey',
+                        borderRadius: '10px',
+                        padding: '5px',
+                        height: '15px',
+                        width: '8rem'
+                    }}
+                >
+                    Schließen
+                </div>
                 <h2>{this.props.stats[0].name}</h2>
                 <br/>
                 <br/>
@@ -21,7 +39,7 @@ class ExerciseDisplay extends Component<ExerciseDisplayProps, any> {
                                 <div
                                     key={index}
                                     style={{
-                                        width: '19rem',
+                                        width: '17rem',
                                         background: 'transparent',
                                         margin: '6px auto',
                                         border: '1px dotted black',

@@ -30,6 +30,11 @@ export function calculateTimeMessage(competition: Competition): string {
 function App() {
     const [competition, setCompetition] = useState<Competition | null>(null);
     const [displayedExercise, setDisplayedExercise] = useState<string | null>(null);
+    window.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+            setDisplayedExercise(null);
+        }
+    })
 
     useEffect(() => {
         const competitionClient = new CompetitionClient('1Ro45BgDn99_cOQRF1hmacjYJEJzzU1Ip5F1Ap0C3sF0');
@@ -61,7 +66,10 @@ function App() {
                 <h2 className="header-name">Übung Wettbewerb Rangliste</h2>
             </div>
             {displayedExercise ?
-                <ExerciseDisplay stats={competition!.getAllExerciseStatsByExerciseName(displayedExercise)}/> : null
+                <ExerciseDisplay
+                    stats={competition!.getAllExerciseStatsByExerciseName(displayedExercise)}
+                    closePanel={() => setDisplayedExercise(null)}
+                /> : null
             }
             <section>
                 <div style={{marginTop: '6rem', fontWeight: 'bold', fontSize: '1.3rem'}}>
